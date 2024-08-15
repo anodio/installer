@@ -50,7 +50,7 @@ file_put_contents('/var/www/php/composer.json', json_encode($composer, JSON_PRET
 file_put_contents('/var/www/php/app/.gitkeep', '');
 file_put_contents('/var/www/php/system/.gitignore', '*.'."\n".'!.gitignore');
 file_put_contents('/var/www/php/.env', 'APP_NAME='.getenv('PROJECT_NAME')."\n");
-file_put_contents('/var/www/php/.gitignore', 'vendor');
+file_put_contents('/var/www/php/.gitignore', 'vendor'."\n".'.env');
 
 shell_exec('composer install -d /var/www/php');
 
