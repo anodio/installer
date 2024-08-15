@@ -22,7 +22,8 @@ $composer = [
     'description'=>'Anod Framework based project '.getenv('PROJECT_NAME'),
     'type'=>'project',
     'require'=>[
-        'anodio/core'=>'^0.1'
+        'anodio/core'=>'^0.1',
+        'anodio/http-standalone'=>'^0.1'
     ],
     'autoload'=>[
         'psr-4'=>[
