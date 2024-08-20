@@ -38,6 +38,10 @@ $composer = [
             'include'=>[
                 'app',
                 'vendor'
+            ],
+            'exclude'=>[
+                "vendor/phpdocumentor",
+                "vendor/spatie",
             ]
         ]
     ]
