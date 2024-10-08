@@ -1,4 +1,0 @@
-projectName: MY_SUPER_COOL_PROJECT_NAME
-apps:
-  http:
-    command: ["tail", "-f", "/dev/null"]

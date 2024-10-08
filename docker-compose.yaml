@@ -1,0 +1,37 @@
+services:
+#  redis:
+#    image: redis:latest
+#    networks:
+#      - traefik-net
+  http:
+    image: vladitot/php83-swow-alpine-local:v0.1.18
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1024M
+        reservations:
+          cpus: '1'
+          memory: 1024M
+    volumes:
+      - type: bind
+        source: ./
+        target: /var/www
+    entrypoint: ["bash"]
+    command: ["-c", "-l", "php /var/www/php/app.php supervisor:run"]
+    environment:
+      PHP_IDE_CONFIG: "serverName=MY_SUPER_COOL_PROJECT_NAME"
+    labels:
+      - "traefik.http.routers.MY_SUPER_COOL_PROJECT_NAME.rule=Host(`MY_SUPER_COOL_PROJECT_NAME-http.localhost`)"
+      - "traefik.http.services.MY_SUPER_COOL_PROJECT_NAME.loadbalancer.server.port=8080"
+      - "traefik.http.routers.MY_SUPER_COOL_PROJECT_NAME.service=MY_SUPER_COOL_PROJECT_NAME"
+      - "traefik.http.routers.MY_SUPER_COOL_PROJECT_NAME-metrics.rule=Host(`MY_SUPER_COOL_PROJECT_NAME-metrics.localhost`)"
+      - "traefik.http.services.MY_SUPER_COOL_PROJECT_NAME-metrics.loadbalancer.server.port=7071"
+      - "traefik.http.routers.MY_SUPER_COOL_PROJECT_NAME-metrics.service=MY_SUPER_COOL_PROJECT_NAME-metrics"
+      - "traefik.enable=true"
+    networks:
+      - traefik-net
+networks:
+  traefik-net:
+    external: true
+    name: traefik-net
