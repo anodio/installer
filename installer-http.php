@@ -42,7 +42,6 @@ shell_exec('composer install -n -d /var/www/php');
 
 copy('/var/www/php/vendor/anodio/core/app/app.php', '/var/www/php/app.php');
 
-$composer = json_decode(file_get_contents('/var/www/php/composer.json'), true);
-unset($composer['config']);
-file_put_contents('/var/www/php/composer.json', json_encode($composer, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
+shell_exec('composer config -d /var/www/php --no-plugins allow-plugins.olvlvl/composer-attribute-collector false');
+
 copy('/installer/xc.md', '/var/www/Readme.md');
