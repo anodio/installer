@@ -33,7 +33,7 @@ shell_exec('composer config -d /var/www/php --no-plugins allow-plugins.olvlvl/co
 @mkdir('/var/www/php/app', 0777, true);
 @mkdir('/var/www/php/system', 0777, true);
 file_put_contents('/var/www/php/app/.gitkeep', '');
-file_put_contents('/var/www/php/system/.gitignore', '*.'."\n".'!.gitignore');
+file_put_contents('/var/www/php/system/.gitignore', '*'."\n".'!.gitignore');
 file_put_contents('/var/www/php/.env', 'APP_NAME='.getenv('PROJECT_NAME')."\n");
 file_put_contents('/var/www/php/.gitignore', 'vendor'."\n".'.env');
 file_put_contents('/var/www/.gitignore', 'docker-compose.override.yaml'."\n");
